@@ -1,89 +1,77 @@
-# #SLIDE 7
-# import sys
+# slide 11
+# def count_up_to(max):
+#     count = 1
+#     while count <= max:
+#         yield count  # Menghasilkan angka satu per satu
+#         count += 1
 
-# # Membuat objek baru
-# a = [1, 2, 3]
-# print("Referensi awal:", sys.getrefcount(a))  
-# # Output: 2 (default 1 + referensi variabel a)
+# # Menggunakan generator untuk menghitung
+# for number in count_up_to(5):
+#     print(number)
 
-# # Menambah referensi
-# b = a
-# print("Referensi setelah b = a:", sys.getrefcount(a))  
-# # Output: 3
+#Slide 15
+# numberslist = [i for i in range(1, 5)]
+# print(f"List= {numberslist}")
+# totallist = sum(numberslist)
+# print(f"Sum List= {totallist}")
 
-# # Menghapus referensi
-# del b
-# print("Referensi setelah del b:", sys.getrefcount(a))  
-# # Output: 2
-
-# # SLIDE 10
-# import gc
-
-# # Membuat siklus referensi
-# a = []
-# b = [a]
-# a.append(b)
-
-# # Menghapus referensi
-# del a, b
-
-# # Memanggil garbage collector
-# gc.collect()
-# print("Garbage Collection selesai")
-
-# # SLIDE 14
-# import weakref
-
-# class Dict(dict):
-#     pass
-
-# obj = Dict(red=1, green=2, blue=3) 
-# weak_obj = weakref.ref(obj)
-# print(weak_obj())  # Mengakses objek menggunakan referensi lemah
-# del obj
-# print(weak_obj())  # None (objek sudah dihapus)
-
-# # Slide 19
-# # Menggunakan List
-# nums = [i for i in range(1000000)]
-# print(sum(nums))  # Menggunakan banyak memori
-
-# # Menggunakan Generator
 # def generate_numbers():
-#     for i in range(1000000):
+#     for i in range(1, 5):
 #         yield i
 
-# print(sum(generate_numbers()))  # Memori lebih hemat
+# numbersgenerate = generate_numbers()
+# for number in generate_numbers():
+#     print(f"Generate List= {number}")
+# totalgenerate = sum(numbersgenerate)
+# print(f"Sum List= {totalgenerate}")
 
-# #SLIDE 20
-# import sys
-# import tracemalloc
+#Slide 18
+# import time
+# start_time_list = time.time()
+# numberslist = [i for i in range(1, 100)]
+# # print(f"List= {numberslist}")
+# totallist = sum(numberslist)
+# print(f"Sum List= {totallist}")
+# end_time_list = time.time()
+# print(f"Time build List= {end_time_list - start_time_list} second")
 
-# a = [1, 2, 3]
-# print("Ukuran objek:", sys.getsizeof(a), "bytes")
 
-# tracemalloc.start()
-# a = [i for i in range(100000)]
-# print("Penggunaan memori saat ini:", tracemalloc.get_traced_memory())
-# tracemalloc.stop()
+# start_time_generate = time.time()
+# def generate_numbers():
+#     for i in range(1, 100):
+#         yield i
 
-#SLIDE 21
+# numbersgenerate = generate_numbers()
+# # for number in generate_numbers():
+# #     print(f"Generate List= {number}")
+# totalgenerate = sum(numbersgenerate)
+# print(f"Sum List= {totalgenerate}")
+# end_time_generate= time.time()
+# print(f"Time build List= {end_time_generate - start_time_generate} second")
 
-# import sys
-# import tracemalloc
-# tracemalloc.start()
-# def read_large_file(file_path):
-#     with open(file_path) as file:
-#         for line in file:
-#             yield line.strip()
+#Slide 19
+import time
+import sys
+start_time_list = time.time()
+numberslist = [i for i in range(1, 100)]
+# print(f"List= {numberslist}")
+totallist = sum(numberslist)
+print(f"Sum List= {totallist}")
+end_time_list = time.time()
+print(f"Time build List= {end_time_list - start_time_list} second")
+print(f"Size of List: {sys.getsizeof(numberslist)} bytes")
 
-# for line in read_large_file("pertemuan9.py"):
-#     print(line)
 
-# listfile = [f for f in read_large_file("pertemuan9.py")]
+start_time_generate = time.time()
+def generate_numbers():
+    for i in range(1, 100):
+        yield i
 
-# print("Ukuran objek file menggunakan generator:", sys.getsizeof(line), "bytes")
-# print("Ukuran objek file menggunakan list:", sys.getsizeof(listfile), "bytes")
-# print("Penggunaan memori saat ini:", tracemalloc.get_traced_memory())
-# tracemalloc.stop()
-
+numbersgenerate = generate_numbers()
+# for number in generate_numbers():
+#     print(f"Generate List= {number}")
+totalgenerate = sum(numbersgenerate)
+print(f"Sum List= {totalgenerate}")
+end_time_generate= time.time()
+print(f"Time build List= {end_time_generate - start_time_generate} second")
+print(f"Size of Generate: {sys.getsizeof(numbersgenerate)} bytes")
